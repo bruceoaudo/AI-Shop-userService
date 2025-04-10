@@ -1,0 +1,32 @@
+syntax = "proto3";
+package user;
+option go_package = "gen/user";
+
+message RegisterMessageRequest {
+    string fullName = 1;
+    string userName = 2;
+    string emailAddress = 3;
+    string phoneNumber = 4;
+    string password = 5;
+}
+
+message RegisterMessageResponse {
+    string userName = 1;
+    string message = 2;
+    bool success = 3;
+}
+
+message LoginMessageRequest {
+    string email = 1;
+}
+
+message LoginMessageResponse {
+    string email = 1;
+    string userName = 2;
+    string password = 3;
+}
+
+service UserService {
+    rpc LoginUser(LoginMessageRequest) returns (LoginMessageResponse) {}
+    rpc RegisterUser(RegisterMessageRequest) returns (RegisterMessageResponse) {}
+}
